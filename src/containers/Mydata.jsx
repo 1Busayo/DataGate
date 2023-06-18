@@ -20,24 +20,7 @@ const Mydata = () => {
     const {uData} = useContext(Web3Context)
 
 
- function createData(
-  name,
-  calories,
-  fat,
-  carbs,
-  protein,
-) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
+ 
  return <Box>
     
  <Typography sx={styles.pageTitle} variant="h5">My Data</Typography>
@@ -72,17 +55,10 @@ const rows = [
                <TableCell align="right">{tweet.timestamp}</TableCell>
               <TableCell align="right">{tweet.mimetitle}</TableCell>
               <TableCell align="right">{tweet.mimedesc}</TableCell>
-              <TableCell align="right"> 
-              <Link
-  component="button"
-  variant="body2"
-  onClick={() => {
-    console.info("I'm a button.");
-    href=`https://ipfs.io/ipfs/${tweet.mimeimage}`
-  }}
->
-  View Data
-</Link> </TableCell>
+              <TableCell align="right"> <a target='_blank' href={`https://ipfs.io/ipfs/${tweet.mimeimage}`}>View data</a>
+     
+
+</TableCell> 
              
             </TableRow>
           ))}

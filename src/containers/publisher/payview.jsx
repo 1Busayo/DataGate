@@ -1,9 +1,9 @@
 import {useState, useContext} from 'react'
 import { Web3Context } from '../../context/Web3Context'
 // import {  useRouter } from 'next/router';
-import InitialState from '../../components/upload/InitialState'
-import LoadingState from '../../components/upload/LoadingState'
-import FinishedState from '../../components/upload/FinishedState'
+import InitialState from '../../components/payview/InitialState'
+import LoadingState from '../../components/payview/LoadingState'
+import FinishedState from '../../components/payview/FinishedState'
 import { pinJSONToIPFS, pinFileToIPFS } from '../../lib/pianta'
 import {  postmimes } from '../../lib/client'
  import {ethers} from 'ethers'
@@ -30,18 +30,22 @@ if (typeof window !== 'undefined') {
 //   return transactionContract
 
 
+
 // }
 
-const Upload = () => {
+const Payview = () => {
    const { currentAccount, setAppStatus } = useContext(Web3Context)
+
+
   const router = useNavigate()
 
   const [addr, setAddr] = useState('')
   const [title, setTitle] = useState('')
   const [status, setStatus] = useState('initial')
   const [file, setFile] = useState()
-  const [desc,setDesc] = useState('')
+  const [cid,setCid] = useState('')
  
+  setCid(window.location.pathname.split('/')[1])
 
   const upload = async () => {
     if ( !title || !desc || !file) return
@@ -145,12 +149,12 @@ const modalChildren = (modalStatus = status) => {
         <InitialState
           addr={addr}
           desc = {desc}
-          setDesc = {setDesc}
+          setCid = {setCid}
           acc={currentAccount}
           setAddr={setAddr}
           title={title}
           setTitle={setTitle}
-          file = {file}
+          cid = {cid}
           setFile={setFile}
          
           upload={upload}
@@ -174,4 +178,4 @@ const modalChildren = (modalStatus = status) => {
   return <> {(modalChildren(status))} </>
 }
 
-export default Upload
+export default Payview

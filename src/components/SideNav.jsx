@@ -41,6 +41,8 @@ function SideNav() {
             
         
             <MenuItem active={ window.location.pathname === "/publisher/upload" } component={<Link to="publisher/upload" />} icon={<SourceOutlinedIcon />}> <Typography variant="body2">Upload data </Typography></MenuItem>
+            <MenuItem active={ window.location.pathname === "/publisher/mydata" } component={<Link to="publisher/mydata" />} icon={<AnalyticsOutlinedIcon />}> <Typography variant="body2">My data </Typography></MenuItem>
+            
             </Menu>
       :
  <Menu
@@ -54,9 +56,9 @@ function SideNav() {
             
         
             <MenuItem active={window.location.pathname === "/content"} component={<Link to="/content" />} icon={<SourceOutlinedIcon />}> <Typography variant="body2">Datasets </Typography></MenuItem>
-            <MenuItem active={window.location.pathname === "/analytics"} component={<Link to="/analytics" />} icon={<AnalyticsOutlinedIcon />}> <Typography variant="body2">Analytics </Typography></MenuItem>
+            {/* <MenuItem active={window.location.pathname === "/analytics"} component={<Link to="/analytics" />} icon={<AnalyticsOutlinedIcon />}> <Typography variant="body2">Analytics </Typography></MenuItem>
             <MenuItem active={window.location.pathname === "/customization"} component={<Link to="/customization" />} icon={<StyleOutlinedIcon />}> <Typography variant="body2">Customization </Typography></MenuItem >
-            <MenuItem active={window.location.pathname === "/dashboard"} component={<Link to="/dashboard" />} icon={<DashboardOutlinedIcon />}> <Typography variant="body2">Dashboard</Typography> </MenuItem>
+            <MenuItem active={window.location.pathname === "/dashboard"} component={<Link to="/dashboard" />} icon={<DashboardOutlinedIcon />}> <Typography variant="body2">Dashboard</Typography> </MenuItem> */}
         </Menu >
 
       } 

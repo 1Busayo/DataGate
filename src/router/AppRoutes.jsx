@@ -7,11 +7,13 @@ import Dashboard from '../containers/Dashboard';
 import Viewdataset from '../containers/Viewdataset';
 import Upload from '../containers/publisher/Upload';
 import Mydata from '../containers/Mydata';
+import Payview from '../containers/publisher/payview';
 
 const AppRoutes = () => {
     return <Routes>
         {/* <Route path='/' element={<Home />} /> */}
         <Route path='/content' element={<Content />} />
+        <Route path='/payview' element={<Payview />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/analytics' element={<Analytics />} />
         <Route path='/customization' element={<Customization />} />

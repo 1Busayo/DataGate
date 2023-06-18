@@ -1,204 +1,120 @@
-import { Box, Tab, Tabs, Typography } from "@mui/material";
-import { useState } from "react";
-import { DataGrid } from '@mui/x-data-grid';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
-import TabPanel from "../components/TabPanel";
-import { Link } from 'react-router-dom';
+import { Table,TableBody,TableCell,TableContainer, TableHead ,Box,TableRow ,Typography,Paper , Button
+} from '@mui/material';
+ import { GridLoader } from 'react-spinners'
+import { css } from '@emotion/react'
+import  React , {useContext , useNavig} from 'react';
+import { Web3Context } from '../context/Web3Context'
+import { createBrowserRouter, Route, useNavigate  ,Link} from 'react-router-dom';
 
-const columns = [
-    {
-        field: 'thumbnail',
-        headerName: 'Title',
-        minWidth: 500,
-        flex: 4,
-        renderCell: (params) => <Box sx={styles.videoColumn}>
-            <Box
-                component="img"
-                sx={styles.videoThumbnail}
-                src={params.row.thumbnail}
-            />
-            <Box sx={styles.videoDetails}>
-                <Typography sx={styles.videoTitle}>Must Know JavaScript Interview Questions | Part 1</Typography>
-                <Typography sx={styles.videoDescription}>In this video you will learn how to solve JavaScript interview questions.</Typography>
-            </Box>
-        </Box>,
+// const style = {
+//   wrapper: `h-[20rem] w-[35rem] text-white bg-[#15202b] rounded-3xl p-10 flex flex-col items-center justify-center`,
+//   title: `font-semibold text-xl mb-6`,
+// }
+// const cssOverride = css`
+//   display: block;
+//   margin: 0 auto;
+//   border-color: white;
+// `
 
-    },
+const Content = () => {
 
-    {
-        field: 'visibility',
-        headerName: 'Description',
-        minWidth: 170,
-        flex: 2,
-        renderCell: (params) => <Box sx={styles.iconColumn} >
-            <VisibilityOutlinedIcon />
-            <Typography sx={styles.iconColumnText}>{params.row.visibility}</Typography>
-        </Box>,
-    }
-    ,
+    const route = useNavigate()
 
-    {
-        field: 'monetization',
-        headerName: 'Author',
-        minWidth: 170,
-        flex: 2,
-        renderCell: (params) => <Box sx={styles.iconColumn} >
-            <AttachMoneyOutlinedIcon />
-            <Typography sx={styles.iconColumnText}>{params.row.monetization}</Typography>
-        </Box>,
-    },
-    {
-        field: 'views',
-        headerName: 'Views',
-        minWidth: 170,
-        flex: 1,
-    },
-    {
-        field: 'comments',
-        headerName: 'Comments',
-        minWidth: 170,
-        flex: 1,
-    }
-];
-
-const videos = [
-    { id: 1, thumbnail: 'src/assets/thumbnail.png', visibility: 'Public', monetization: 'On', views: 100, comments: 12 },
-    { id: 2, thumbnail: 'src/assets/thumbnail2.png', visibility: 'Public', monetization: 'On', views: 100, comments: 12 },
-
-];
-
-const posts = [
-    { id: 1, thumbnail: 'src/assets/thumbnail2.png', visibility: 'Public', monetization: 'On', views: 100, comments: 12 },
-    { id: 2, thumbnail: 'src/assets/thumbnail2.png', visibility: 'Public', monetization: 'On', views: 100, comments: 12 },
-    { id: 3, thumbnail: 'src/assets/thumbnail.png', visibility: 'Public', monetization: 'On', views: 100, comments: 12 },
-
-];
-
-const playlists = [
-    { id: 1, thumbnail: 'src/assets/thumbnail.png', visibility: 'Public', monetization: 'On', views: 100, comments: 12 },
-];
-
-const lives = [
-];
+    const {uData} = useContext(Web3Context)
 
 
-function Content() {
-    const [value, setValue] = useState(0);
+ 
+ return <Box>
+    
+ <Typography sx={styles.pageTitle} variant="h5"> Data List </Typography>
+  {/* <Box sx={styles.rowContainer}> 
+ <Box sx={styles.center}> */}
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-    return <Box>
-        <Typography sx={styles.pageTitle} variant="h5">Datasets</Typography>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="Unstructured data" id='tab-0' />
-                <Tab label="Semi-Structured data" id='tab-1' />
-                <Tab label="Structured data" id='tab-2' />
-                <Tab label="Playlists" id='tab-3' />
-            </Tabs>
-        </Box>
-        <TabPanel value={value} index={0}>
-        <Link to="/viewdataset">
+
+
+
+
+    <TableContainer sx={styles.center}  component={Paper}>
+      <Table aria-label="simple table">
+        <TableHead>
+          <TableRow>
            
-            <DataGrid
-                rows={videos}
-                columns={columns}
-                pageSize={25}
-                rowsPerPageOptions={[25]}
-                checkboxSelection
-                autoHeight
-                rowHeight={70}
-            />
-            </Link>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-            <DataGrid
-                rows={lives}
-                columns={columns}
-                pageSize={25}
-                rowsPerPageOptions={[25]}
-                checkboxSelection
-                autoHeight
-                rowHeight={70}
-            />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-            <DataGrid
-                rows={posts}
-                columns={columns}
-                pageSize={25}
-                rowsPerPageOptions={[25]}
-                checkboxSelection
-                autoHeight
-                rowHeight={70}
-            />
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-            <DataGrid
-                rows={playlists}
-                columns={columns}
-                pageSize={25}
-                rowsPerPageOptions={[25]}
-                checkboxSelection
-                autoHeight
-                rowHeight={70}
-            />
-        </TabPanel>
+            <TableCell align="right">Wallet Address</TableCell>
+            <TableCell align="right">Name</TableCell>
+            <TableCell align="right">Description</TableCell>
+            <TableCell align="right">File</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
 
 
-    </Box>;
+       
+
+          {uData.map((tweet,index) => (
+            <TableRow
+              key={index}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+               <TableCell align="right">{tweet.timestamp}</TableCell>
+              <TableCell align="right">{tweet.mimetitle}</TableCell>
+              <TableCell align="right">{tweet.mimedesc}</TableCell>
+              <TableCell align="right">
+                
+              <Button component={Link} to={`/payview/${tweet.mimeimage}`} variant="contained" color="primary">
+  About Page
+</Button>
+                 {/* <a target='_blank'    href={`payview/${tweet.mimeimage}`}>Pay to view</a> */}
+     
+
+</TableCell> 
+             
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  
+
+    </Box>
+//     </Box>
+//    </Box>
 }
 
-export default Content;
-
-/**
- * @type {import("@mui/material").SxProps}
- */
+export default Content
 
 const styles = {
-    pageTitle: {
-        mb: 2
-    },
-    videoThumbnail: {
-        width: 120,
-    },
-    videoTitle: {
-        fontSize: '0.8rem',
-        width: 490,
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        '&:hover': {
-            textDecoration: 'underline',
-            cursor: 'pointer'
-        }
-    },
-    videoDescription: {
-        fontSize: '0.7rem',
-        color: 'neutral.normal',
-        width: 490,
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden'
-    },
-    videoDetails: {
-        ml: 2
-    },
-    videoColumn: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    iconColumn: {
-        display: 'flex',
-        alignItems: 'center'
-    },
-    iconColumnText: {
-        ml: 1,
-        fontSize: '0.9rem'
-    }
+  pageTitle: {
+      mb: 2
+  },
+  center: {
+    display:"flex" ,
+    // widt:500,
+    // height:80,
 
+    alignItems:"center",
+    justifyContent:"center"
+  },
+  rowContainer: {
+      width: '100%',
+      maxWidth: 900,
+      border: 1,
+      borderColor: 'neutral.medium',
+      borderRadius: 1,
+      mt: 2,
+      p: 2,
+      display: 'flex',
+      alignItems: 'flex-start',
+      justifyItems: 'center'
+  },
+  rowIcon: {
+      fontSize: 40,
+      color: 'neutral.normal'
+  },
+  secondColumn: {
+      ml: 1
+  },
+  rowLink: {
+      ml: 'auto'
+  }
 }
 

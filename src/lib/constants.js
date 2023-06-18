@@ -1,28 +1,8 @@
-import contractArtifact from './CleaFI_NFTs.json'
-import  contractTip from './CleaFiTip.json'
+// import contractArtifact from './CleaFI_NFTs.json'
+import  contractTip from './DrcToken.json'
 
 //export const contractAdress ="0xDdB114461415F31A11412543dC3C56B634e3Ad7F"
 //export const contractAdress ="0xA8FcA9Ed24745c9CfD04B8C9A8159d70dF4D4635"
 
-export const contractAddress='0x0824eac8a2D73f3D136e92070884D8126f1b55e0'
-
-export const contractABI =contractArtifact.abi
-
-export const contracTipABI = contractTip.abi
-
-
-export const customStyles = {
-    content: {
-      top: '30%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      transform: 'translate(-50%, -50%)',
-      backgroundColor: '',
-      padding: 0,
-      border: 'none',
-    },
-    overlay: {
-      backgroundColor: '#334250a7',
-    },
-  }
+export const contractAddress='0x5FbDB2315678afecb367f032d93F642f64180aa3'
+export const contracTipABI = contractTip.output.abi

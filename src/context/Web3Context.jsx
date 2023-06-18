@@ -21,7 +21,7 @@ export const Web3Provider = ({ children }) => {
 useEffect(()=>{
     checkIfWalletIsConnected()
     personalMimes(currentAccount)
-  } ,[])
+  } ,[currentAccount, appStatus])
 
 //   useEffect(() => {
 //     if (!currentAccount || appStatus !== 'connected') return

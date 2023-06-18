@@ -90,7 +90,7 @@ const Hero = () => {
       <Grid container spacing={6} className={classes.gridContainer}>
         <Grid item xs={12} md={7}>
           <Typography variant="h3" fontWeight={700} className={classes.title}>
-         Monitize Your Copyrighted Datasets
+         Monitize Your Scientfic Research
           </Typography>
           <Typography variant="h6" className={classes.subtitle}>
           Provide your copyrighted datasets  as a Data provider for Data consumers, who are ready to pay for your data 
