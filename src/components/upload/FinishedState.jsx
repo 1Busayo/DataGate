@@ -1,0 +1,34 @@
+import { useContext, useEffect , } from 'react'
+import { Web3Context } from '../../context/Web3Context'
+
+import { Avatar, Box, Typography } from "@mui/material";
+ import checkMark from '../../assets/check.png'
+ import {  useNavigate  } from 'react-router-dom';
+
+
+const style = {
+  wrapper: `h-[20rem] w-[35rem] text-white bg-[#15202b] rounded-3xl p-10 flex flex-col items-center justify-center`,
+  title: `font-semibold text-xl mb-6`,
+  closeButton: `mt-6 bg-white text-black px-3 py-1 rounded-full hover:bg-[#8899a6] cursor-pointer`,
+}
+
+const FinishedState = () => {
+  const router = useNavigate()
+  const { getCurrentUserDetails } = useContext(Web3Context)
+
+  useEffect(() => {
+   // getCurrentUserDetails()
+  })
+
+  return (
+    <div className={style.wrapper}>
+      <div className={style.title}>Minting Successful!</div>
+      <img src={checkMark} alt='checkmark' height={100} width={100} />
+      <div onClick={() => router.push('/')} className={style.closeButton}>
+        Close
+      </div>
+    </div>
+  )
+}
+
+export default FinishedState
